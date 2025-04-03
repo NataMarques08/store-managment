@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nata.store_management_customers_and_products.dto.CustomerDtos.CustomerDTO;
 import com.nata.store_management_customers_and_products.model.Customer;
 import com.nata.store_management_customers_and_products.service.CustomerService;
+
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +22,8 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestBody @Valid CustomerDTO customerDTO) {
-        Customer entity = customerService.saveCustomer(customerDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(entity);
+    public ResponseEntity<CustomerDTO> createCustomer(@RequestBody @Valid CustomerDTO customerDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customerDTO));
     }
     
 

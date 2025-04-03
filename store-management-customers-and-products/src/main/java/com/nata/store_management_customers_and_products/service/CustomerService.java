@@ -1,5 +1,6 @@
 package com.nata.store_management_customers_and_products.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,10 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
 
-    public Customer saveCustomer(CustomerDTO customerDTO){
-        return customerRepository.save(customerMapper.convertDTOToEntity(customerDTO));
+    public CustomerDTO saveCustomer(CustomerDTO customerDTO){
+        Customer customer = customerMapper.convertDTOToEntity(customerDTO);
+        customer = customerRepository.save(customer);
+        return customerMapper.convertEntityToDTO(customer);
     }
 
 

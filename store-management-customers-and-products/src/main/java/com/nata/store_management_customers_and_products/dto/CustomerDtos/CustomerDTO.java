@@ -1,12 +1,18 @@
 package com.nata.store_management_customers_and_products.dto.CustomerDtos;
 
-public class CustomerDTO {
-    private String name;    
-    private String lastname;
-    private String email;
-    private String phone;
-    private String address;
-    private String city;
-    private String state;
-    private Double creditLimit;
-}
+public record CustomerDTO (
+    String name,    
+    String lastname,
+    String email,
+    String phone,
+    String address,
+    String city,
+    String state,
+    Double creditlimit
+){}
+
+
+    
+    
+
+

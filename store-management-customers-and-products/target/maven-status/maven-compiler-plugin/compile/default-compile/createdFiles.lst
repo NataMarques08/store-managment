@@ -1,5 +1,6 @@
 com/nata/store_management_customers_and_products/mapper/CustomerMapperImpl.class
 com/nata/store_management_customers_and_products/mapper/CustomerMapper.class
+org/mapstruct/extensions/spring/converter/ConversionServiceAdapter.class
 com/nata/store_management_customers_and_products/service/CustomerService.class
 com/nata/store_management_customers_and_products/repository/CustomerRepository.class
 com/nata/store_management_customers_and_products/controller/CustomerController.class

@@ -1,6 +1,7 @@
 package com.nata.store_management_customers_and_products.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -22,28 +24,46 @@ public class Customer implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
+    @Column(nullable = false)
     private String name;
-    @NotBlank    
+    
+    @NotBlank
+    @Column(nullable = false)
     private String lastname;
+    
     @NotBlank
+    @Email
+    @Column(nullable = false, unique = true)
     private String email;
+    
     @NotBlank
+    @Column(nullable = false)
     private String phone;
+    
     @NotBlank
+    @Column(nullable = false)
     private String address;
+    
     @NotBlank
+    @Column(nullable = false)
     private String city;
+    
     @NotBlank
+    @Column(nullable = false)
     private String state;
-    @Column(name = "creditlimit")
-    @NotNull(message = "Credit limit cannot be null")
-    private Double creditLimit;
+    
+   /*  @NotNull
+    @Column(nullable = false, precision = 10, scale = 2)*/
+    private BigDecimal creditlimit;
 
 
     public Customer() {
     }
-    public Customer(Long id, String name, String lastname, String email, String phone, String address, String city,
-            String state, Double creditLimit) {
+
+
+    public Customer(Long id, @NotBlank String name, @NotBlank String lastname, @NotBlank String email,
+            @NotBlank String phone, @NotBlank String address, @NotBlank String city, @NotBlank String state,
+            @NotNull BigDecimal creditlimit) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -52,7 +72,12 @@ public class Customer implements Serializable{
         this.address = address;
         this.city = city;
         this.state = state;
-        this.creditLimit = creditLimit;
+        this.creditlimit = creditlimit;
+    }
+
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
 
@@ -60,54 +85,92 @@ public class Customer implements Serializable{
         return id;
     }
 
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
     public String getName() {
         return name;
     }
+
+
     public void setName(String name) {
         this.name = name;
     }
+
+
     public String getLastname() {
         return lastname;
     }
+
+
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+
     public String getEmail() {
         return email;
     }
+
+
     public void setEmail(String email) {
         this.email = email;
     }
+
+
     public String getPhone() {
         return phone;
     }
+
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+
     public String getAddress() {
         return address;
     }
+
+
     public void setAddress(String address) {
         this.address = address;
     }
+
+
     public String getCity() {
         return city;
     }
+
+
     public void setCity(String city) {
         this.city = city;
     }
+
+
     public String getState() {
         return state;
     }
+
+
     public void setState(String state) {
         this.state = state;
     }
-    public Double getCreditLimit() {
-        return creditLimit;
+
+
+    public BigDecimal getCreditlimit() {
+        return creditlimit;
     }
-    public void setCreditLimit(Double creditLimit) {
-        this.creditLimit = creditLimit;
+
+
+    public void setCreditlimit(BigDecimal creditlimit) {
+        this.creditlimit = creditlimit;
     }
+
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -120,9 +183,11 @@ public class Customer implements Serializable{
         result = prime * result + ((address == null) ? 0 : address.hashCode());
         result = prime * result + ((city == null) ? 0 : city.hashCode());
         result = prime * result + ((state == null) ? 0 : state.hashCode());
-        result = prime * result + ((creditLimit == null) ? 0 : creditLimit.hashCode());
+        result = prime * result + ((creditlimit == null) ? 0 : creditlimit.hashCode());
         return result;
     }
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -172,14 +237,14 @@ public class Customer implements Serializable{
                 return false;
         } else if (!state.equals(other.state))
             return false;
-        if (creditLimit == null) {
-            if (other.creditLimit != null)
+        if (creditlimit == null) {
+            if (other.creditlimit != null)
                 return false;
-        } else if (!creditLimit.equals(other.creditLimit))
+        } else if (!creditlimit.equals(other.creditlimit))
             return false;
         return true;
     }
-
+    
     
     
 
