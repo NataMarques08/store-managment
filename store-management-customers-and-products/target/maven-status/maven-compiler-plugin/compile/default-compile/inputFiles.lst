@@ -1,7 +1,7 @@
-/home/nata/Project/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/StoreManagementCustomersAndProductsApplication.java
-/home/nata/Project/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/controller/CustomerController.java
-/home/nata/Project/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/dto/CustomerDtos/CustomerDTO.java
-/home/nata/Project/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/mapper/CustomerMapper.java
-/home/nata/Project/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/model/Customer.java
-/home/nata/Project/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/repository/CustomerRepository.java
-/home/nata/Project/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/service/CustomerService.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/StoreManagementCustomersAndProductsApplication.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/controller/CustomerController.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/dto/CustomerDtos/CustomerDTO.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/mapper/CustomerMapper.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/model/Customer.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/repository/CustomerRepository.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/service/CustomerService.java

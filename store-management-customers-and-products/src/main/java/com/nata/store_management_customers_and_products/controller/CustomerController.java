@@ -3,15 +3,14 @@ package com.nata.store_management_customers_and_products.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.nata.store_management_customers_and_products.dto.CustomerDtos.CustomerDTO;
 import com.nata.store_management_customers_and_products.model.Customer;
 import com.nata.store_management_customers_and_products.service.CustomerService;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 
 @RestController
@@ -26,7 +25,10 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customerDTO));
     }
     
-
+    @GetMapping
+    public ResponseEntity<List<CustomerDTO>> getAllCustomer(){
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.getAllCustomers());
+    }
 
 
 }

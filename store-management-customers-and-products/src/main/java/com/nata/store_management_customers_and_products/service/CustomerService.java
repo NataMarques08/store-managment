@@ -9,6 +9,8 @@ import com.nata.store_management_customers_and_products.mapper.CustomerMapper;
 import com.nata.store_management_customers_and_products.model.Customer;
 import com.nata.store_management_customers_and_products.repository.CustomerRepository;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
 
@@ -25,5 +27,10 @@ public class CustomerService {
         return customerMapper.convertEntityToDTO(customer);
     }
 
+
+    public List<CustomerDTO> getAllCustomers(){
+        List<Customer> customer = customerRepository.findAll();
+        return customerMapper.convertEntityListToDTO(customer);
+    }
 
 }
