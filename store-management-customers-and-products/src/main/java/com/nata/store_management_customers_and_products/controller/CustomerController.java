@@ -30,5 +30,6 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.getAllCustomers());
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDTO> findCustomerById()
 }
