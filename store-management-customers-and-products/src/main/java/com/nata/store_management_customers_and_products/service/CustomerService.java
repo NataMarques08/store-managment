@@ -39,4 +39,9 @@ public class CustomerService {
         return customerMapper.convertEntityToDTO(customer.orElse(null));
     }
 
+    public CustomerDTO updateCustomerFields(Long id){
+        Optional<Customer> customer = customerRepository.findById(id);
+        
+    }
+
 }

@@ -31,5 +31,10 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDTO> findCustomerById()
+    public ResponseEntity<CustomerDTO> findCustomerById(@RequestBody @Valid @PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.findById(id));
+    }
+
+
+
 }
