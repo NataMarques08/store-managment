@@ -31,10 +31,21 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDTO> findCustomerById(@RequestBody @Valid @PathVariable("id") Long id){
+    public ResponseEntity<CustomerDTO> findCustomerById(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findById(id));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerDTO> updateCustomerById(@PathVariable("id") Long id,
+                                                          @RequestBody @Valid CustomerDTO customerDTO){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(customerService.updateCustomerFields(id,customerDTO));
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable("id") Long id){
+        customerService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

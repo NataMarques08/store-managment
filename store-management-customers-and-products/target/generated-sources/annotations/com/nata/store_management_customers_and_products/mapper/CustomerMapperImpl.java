@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-14T22:34:23-0300",
+    date = "2025-05-17T22:48:24-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.15 (Amazon.com Inc.)"
 )
 @Component
@@ -22,9 +22,7 @@ public class CustomerMapperImpl implements CustomerMapper {
 
         Customer customer = new Customer();
 
-        if ( customerDTO.creditlimit() != null ) {
-            customer.setCreditlimit( BigDecimal.valueOf( customerDTO.creditlimit() ) );
-        }
+        customer.setCreditlimit( customerDTO.creditlimit() );
         customer.setName( customerDTO.name() );
         customer.setLastname( customerDTO.lastname() );
         customer.setEmail( customerDTO.email() );
@@ -49,7 +47,7 @@ public class CustomerMapperImpl implements CustomerMapper {
         String address = null;
         String city = null;
         String state = null;
-        Double creditlimit = null;
+        BigDecimal creditlimit = null;
 
         name = customer.getName();
         lastname = customer.getLastname();
@@ -58,9 +56,7 @@ public class CustomerMapperImpl implements CustomerMapper {
         address = customer.getAddress();
         city = customer.getCity();
         state = customer.getState();
-        if ( customer.getCreditlimit() != null ) {
-            creditlimit = customer.getCreditlimit().doubleValue();
-        }
+        creditlimit = customer.getCreditlimit();
 
         CustomerDTO customerDTO = new CustomerDTO( name, lastname, email, phone, address, city, state, creditlimit );
 
