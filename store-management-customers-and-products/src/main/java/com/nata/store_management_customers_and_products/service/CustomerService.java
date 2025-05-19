@@ -1,6 +1,7 @@
 package com.nata.store_management_customers_and_products.service;
 
 
+import com.nata.store_management_customers_and_products.exceptions.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class CustomerService {
     private CustomerMapper customerMapper;
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private CustomerException customerException;
 
 
     public CustomerDTO saveCustomer(CustomerDTO customerDTO){
@@ -42,9 +45,7 @@ public class CustomerService {
     }
 
     public CustomerDTO updateCustomerFields(Long id, CustomerDTO customerDTO){
-        Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND,"Customer not found!"
-        ));
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> customerException.notfound());
 
         customer.setName(customerDTO.name());
         customer.setLastname(customerDTO.lastname());
@@ -59,9 +60,9 @@ public class CustomerService {
     }
 
     public void delete(Long id){
-        if (!customerRepository.existsById(id)) throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND,"Customer not found");
-        customerRepository.deleteById(id);
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> customerException.notfound());
+        customerRepository.delete(customer);
     }
 
 }

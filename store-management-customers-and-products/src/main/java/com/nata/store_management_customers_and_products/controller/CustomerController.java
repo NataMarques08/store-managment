@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.nata.store_management_customers_and_products.dto.CustomerDtos.CustomerDTO;
-import com.nata.store_management_customers_and_products.model.Customer;
 import com.nata.store_management_customers_and_products.service.CustomerService;
 
 import jakarta.validation.Valid;
