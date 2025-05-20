@@ -23,8 +23,7 @@ public class CustomerService {
     private CustomerMapper customerMapper;
     @Autowired
     private CustomerRepository customerRepository;
-    @Autowired
-    private CustomerException customerException;
+
 
 
     public CustomerDTO saveCustomer(CustomerDTO customerDTO){
@@ -45,7 +44,7 @@ public class CustomerService {
     }
 
     public CustomerDTO updateCustomerFields(Long id, CustomerDTO customerDTO){
-        Customer customer = customerRepository.findById(id).orElseThrow(() -> customerException.notfound());
+        Customer customer = customerRepository.findById(id).orElseThrow(CustomerException::notfound);
 
         customer.setName(customerDTO.name());
         customer.setLastname(customerDTO.lastname());
@@ -61,7 +60,7 @@ public class CustomerService {
 
     public void delete(Long id){
         Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> customerException.notfound());
+                .orElseThrow(CustomerException::notfound);
         customerRepository.delete(customer);
     }
 

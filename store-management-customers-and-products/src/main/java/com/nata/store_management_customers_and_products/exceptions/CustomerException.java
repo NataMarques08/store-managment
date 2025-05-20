@@ -5,7 +5,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class CustomerException {
 
-    public ResponseStatusException notfound(){
+    public static ResponseStatusException notfound(){
         return new ResponseStatusException(HttpStatus.NOT_FOUND,"Customer not found!");
     }
 
