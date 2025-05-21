@@ -5,3 +5,5 @@ spring:
         url: jdbc:mariadb://localhost:3306/storedb
         username: root
         password: admin123
+    jwt:
+     secret: my-secret-key
