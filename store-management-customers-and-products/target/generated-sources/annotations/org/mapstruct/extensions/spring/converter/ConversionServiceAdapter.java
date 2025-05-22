@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.extensions.spring.converter.ConversionServiceAdapterGenerator",
-    date = "2025-05-21T02:49:02.239523098Z"
+    date = "2025-05-22T02:55:56.441967110Z"
 )
 @Component
 public class ConversionServiceAdapter {

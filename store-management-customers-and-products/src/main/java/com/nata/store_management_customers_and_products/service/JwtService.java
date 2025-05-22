@@ -1,59 +1,64 @@
 package com.nata.store_management_customers_and_products.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.auth0.jwt.interfaces.JWTVerifier;
 import com.nata.store_management_customers_and_products.config.JwtProperties;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.Date;
-
+import java.util.stream.Collectors;
 
 @Service
 public class JwtService {
 
-    private final JwtProperties jwtProperties;
+    private static final long EXPIRATION_TIME_MS = 1000 * 60 * 60 * 24; // 24h
 
-    public JwtService(JwtProperties jwtProperties){
-        this.jwtProperties = jwtProperties;
+    private final Algorithm algorithm;
+    private final JWTVerifier verifier;
+
+    public JwtService(JwtProperties jwtProperties) {
+        // Inicializa o algoritmo com a chave secreta
+        this.algorithm = Algorithm.HMAC256(jwtProperties.getSecret());
+        this.verifier = JWT.require(algorithm).build();
     }
 
-    private Key getSigningKey(){
-        byte[] keyBytes = jwtProperties.getSecret().getBytes(StandardCharsets.UTF_8);
-        return Keys.hmacShaKeyFor(keyBytes);
-    } // -- get secret key
-
-    public String generateToken(UserDetails userDetails){
-        return Jwts.builder()
-                .setSubject(userDetails.getUsername())
-                .claim("authorities",userDetails.getAuthorities())
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24 hours
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
-                .compact();
+    public String generateToken(UserDetails userDetails) {
+        long now = System.currentTimeMillis();
+        return JWT.create()
+                .withSubject(userDetails.getUsername())
+                // Converte lista de authorities para String separados por vírgula
+                .withClaim("authorities",
+                        userDetails.getAuthorities().stream()
+                                .map(GrantedAuthority::getAuthority)
+                                .collect(Collectors.joining(",")))
+                .withIssuedAt(new Date(now))
+                .withExpiresAt(new Date(now + EXPIRATION_TIME_MS))
+                .sign(algorithm);
     }
 
-    public String extractUsername(String token){
-        return extractAllClaims(token).getSubject();
+    public String extractUsername(String token) {
+        try {
+            DecodedJWT decodedJWT = verifier.verify(token);
+            return decodedJWT.getSubject();
+        } catch (JWTVerificationException e) {
+            return null;
+        }
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails){
-        return extractAllClaims(token).getExpiration().after(new Date());
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+        try {
+            DecodedJWT decodedJWT = verifier.verify(token);
+            String username = decodedJWT.getSubject();
+            Date expiresAt = decodedJWT.getExpiresAt();
+
+            return (username.equals(userDetails.getUsername()) && expiresAt.after(new Date()));
+        } catch (JWTVerificationException e) {
+            return false;
+        }
     }
-
-    private Claims extractAllClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(getSigningKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
-
-
-
-
 }

@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Configuration;
 public class JwtProperties {
     private String secret;
 
-    public String getSecret(){
+    public String getSecret() {
         return secret;
     }
-    public void setSecret(String secret){
+
+    public void setSecret(String secret) {
         this.secret = secret;
     }
 }

@@ -3,14 +3,12 @@ package com.nata.store_management_customers_and_products.service;
 
 import com.nata.store_management_customers_and_products.exceptions.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.nata.store_management_customers_and_products.dto.CustomerDtos.CustomerDTO;
 import com.nata.store_management_customers_and_products.mapper.CustomerMapper;
 import com.nata.store_management_customers_and_products.model.Customer;
 import com.nata.store_management_customers_and_products.repository.CustomerRepository;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
