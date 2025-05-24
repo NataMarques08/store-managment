@@ -9,6 +9,7 @@
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/dto/CustomerDtos/CustomerDTO.java
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/dto/UserDtos/AuthenticationRequest.java
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/dto/UserDtos/AuthenticationResponse.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/dto/UserDtos/RegisterRequest.java
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/exceptions/CustomerException.java
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/mapper/CustomerMapper.java
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/model/Customer.java
@@ -18,3 +19,4 @@
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/service/AuthenticationService.java
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/service/CustomerService.java
 /home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/service/JwtService.java
+/home/nata/Projects/store-managment/store-management-customers-and-products/src/main/java/com/nata/store_management_customers_and_products/service/UserService.java

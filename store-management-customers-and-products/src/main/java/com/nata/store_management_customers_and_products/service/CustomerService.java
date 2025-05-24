@@ -35,8 +35,15 @@ public class CustomerService {
     }
 
 
-    public Page<CustomerDTO> getAllCustomers(Pageable pageable) {
-        return customerRepository.findAll(pageable).map(customerMapper::convertEntityToDTO);
+    public Page<CustomerDTO> getAllCustomers(Pageable pageable, String name) {
+        Page<Customer> customers;
+
+        if(name != null && !name.isBlank()){
+            customers = customerRepository.findByNameContainingIgnoreCase(name,pageable);
+        }else{
+            customers = customerRepository.findAll(pageable);
+        }
+        return customers.map(customerMapper::convertEntityToDTO);
     }
 
     public CustomerDTO findById(Long id){

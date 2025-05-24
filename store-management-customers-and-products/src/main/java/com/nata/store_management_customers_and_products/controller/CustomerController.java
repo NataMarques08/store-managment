@@ -34,9 +34,10 @@ public class CustomerController {
     @Operation(summary = "List all customers")
     @GetMapping
     public ResponseEntity<Page<CustomerDTO>> getAllCustomer(
-            @ParameterObject Pageable pageable
+            @ParameterObject Pageable pageable,
+            @RequestParam(required = false) String name
             ){
-        return ResponseEntity.ok(customerService.getAllCustomers(pageable));
+        return ResponseEntity.ok(customerService.getAllCustomers(pageable,name));
     }
 
     @Operation(summary = "Find a customer by ID")
