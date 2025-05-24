@@ -3,7 +3,10 @@ package com.nata.store_management_customers_and_products.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +33,10 @@ public class CustomerController {
 
     @Operation(summary = "List all customers")
     @GetMapping
-    public ResponseEntity<List<CustomerDTO>> getAllCustomer(){
-        return ResponseEntity.status(HttpStatus.OK).body(customerService.getAllCustomers());
+    public ResponseEntity<Page<CustomerDTO>> getAllCustomer(
+            @ParameterObject Pageable pageable
+            ){
+        return ResponseEntity.ok(customerService.getAllCustomers(pageable));
     }
 
     @Operation(summary = "Find a customer by ID")

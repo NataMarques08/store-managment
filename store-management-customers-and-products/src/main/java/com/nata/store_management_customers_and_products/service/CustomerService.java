@@ -3,6 +3,11 @@ package com.nata.store_management_customers_and_products.service;
 
 import com.nata.store_management_customers_and_products.exceptions.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 
 import com.nata.store_management_customers_and_products.dto.CustomerDtos.CustomerDTO;
@@ -10,7 +15,6 @@ import com.nata.store_management_customers_and_products.mapper.CustomerMapper;
 import com.nata.store_management_customers_and_products.model.Customer;
 import com.nata.store_management_customers_and_products.repository.CustomerRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,9 +35,8 @@ public class CustomerService {
     }
 
 
-    public List<CustomerDTO> getAllCustomers(){
-        List<Customer> customer = customerRepository.findAll();
-        return customerMapper.convertEntityListToDTO(customer);
+    public Page<CustomerDTO> getAllCustomers(Pageable pageable) {
+        return customerRepository.findAll(pageable).map(customerMapper::convertEntityToDTO);
     }
 
     public CustomerDTO findById(Long id){
