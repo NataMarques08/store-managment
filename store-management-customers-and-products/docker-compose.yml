@@ -21,7 +21,7 @@ services:
     image: store-manage
     container_name: store-app
     build: .
-    restart: always
+    restart: "no"
     ports:
       - "8080:8080"
     depends_on:
@@ -33,6 +33,7 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     networks:
       - store-network
+    command: ["./wait-for.sh", "db", "java", "-jar", "app.jar"]
 
 volumes:
   db_data:
