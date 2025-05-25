@@ -15,7 +15,6 @@ import com.nata.store_management_customers_and_products.service.CustomerService;
 
 import jakarta.validation.Valid;
 
-import java.util.List;
 
 @Tag(name = "Customers", description = "Customer-related operations")
 @RestController
