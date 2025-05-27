@@ -12,3 +12,5 @@ RUN chmod +x wait-for.sh
 
 EXPOSE 8080
 
+CMD ["./wait-for.sh", "db", "java", "-jar", "app.jar"]
+
